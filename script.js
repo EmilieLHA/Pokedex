@@ -1,7 +1,7 @@
 let tousLesPokemons = [];
 let tableauFinal = [];
 let liste = document.querySelector(".listePokemon");
-let nombreDePokemons = 270;
+let nombreDePokemons = 300;
 let champsDeRecherche = document.querySelector('#pokemon');
 let iconeChargement = document.querySelector('.chargement');
 
@@ -26,7 +26,7 @@ const types = {
 };
 
 
-// Recupere les 200 premiers pokemons de la base 
+// Recupere les 300 premiers pokemons de la base 
 function listerPokemons() {
 
     fetch(`https://pokeapi.co/api/v2/pokemon?limit=${nombreDePokemons}`)
@@ -108,13 +108,14 @@ function creerLesCartes(array) {
 window.addEventListener('scroll', () => {
     // Desctrucuturing pour récupérer des infos de l'objet document 
     const {scrollTop , scrollHeight, clientHeight} = document.documentElement;
-    if (scrollTop + clientHeight >= scrollHeight) {
+    console.log(index);
+    if (scrollTop + clientHeight >= scrollHeight-10) {
         ajouterCartes(20);
     }
 });
 
 
-let index = 21;
+let index = 20;
 
 function ajouterCartes(n) {
     if (index>= nombreDePokemons) {
@@ -137,8 +138,8 @@ function ajouterCartes(n) {
 champsDeRecherche.addEventListener('keyup', recherche);
 
 function recherche() {
-    if (index <+ nombreDePokemons) {
-        ajouterCartes(nombreDePokemons-20);
+    if (index < nombreDePokemons) {
+        ajouterCartes(nombreDePokemons-index);
     }
 
     let elementRecherche, toutesLesCartes, titreCarte, tousLesTitres;
